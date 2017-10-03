@@ -1,2 +1,3 @@
 language 'c#'
 libraries 'wpf'
+tags 'ItemsControl'

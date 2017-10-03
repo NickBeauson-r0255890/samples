@@ -11,11 +11,22 @@
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <Border Padding="5" BorderBrush="#AAA" BorderThickness="1" Background="#CCC" Margin="5">
-                        <StackPanel Orientation="Vertical">
-                            <TextBox Text="{Binding Name}" />
-                            <Slider Value="{Binding Age}" Minimum="0" Maximum="100" />
-                            <CheckBox IsChecked="{Binding IsMale}">Male</CheckBox>
-                        </StackPanel>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="auto" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            
+                            <TextBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Name}" Margin="5" />
+                            <Slider Grid.Row="1" Grid.Column="0" Value="{Binding Age}" Minimum="0" Maximum="100" Margin="5" />
+                            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Age}" Margin="5" />
+                            <CheckBox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" IsChecked="{Binding IsMale}" Margin="5">Male</CheckBox>
+                        </Grid>
                     </Border>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
