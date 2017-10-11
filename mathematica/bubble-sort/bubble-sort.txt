@@ -1,0 +1,2 @@
+BubbleSort[{xs___,x_,y_,ys___}]:=BubbleSort[{xs,y,x,ys}] /; x>y;
+BubbleSort[xs_]:=xs;
