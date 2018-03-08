@@ -1,0 +1,44 @@
+﻿<Window x:Class="Screens.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Screens"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <ContentPresenter Content="{Binding CurrentScreen}">
+        <ContentPresenter.Resources>
+            <DataTemplate DataType="{x:Type local:ScreenA}">
+                <DockPanel>
+                    <Button DockPanel.Dock="Bottom" Command="{Binding GoToB}" Content="Go To B" />
+                    <Viewbox>
+                        <TextBlock Text="A" />
+                    </Viewbox>
+                </DockPanel>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type local:ScreenB}">
+                <DockPanel>
+                    <Grid DockPanel.Dock="Bottom">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0" Command="{Binding GoToA}" Content="Back to A" />
+                        <Button Grid.Column="1" Command="{Binding GoToC}" Content="Continue to C" />
+                    </Grid>
+                    <Viewbox>
+                        <TextBlock Text="B" />
+                    </Viewbox>
+                </DockPanel>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type local:ScreenC}">
+                <DockPanel>
+                    <Button DockPanel.Dock="Bottom" Command="{Binding GoToB}" Content="Back to B" />
+                    <Viewbox>
+                        <TextBlock Text="C" />
+                    </Viewbox>
+                </DockPanel>
+            </DataTemplate>
+        </ContentPresenter.Resources>
+    </ContentPresenter>
+</Window>
