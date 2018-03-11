@@ -43,13 +43,26 @@ namespace ItemsControl2D
 
         public T this[Position position] => _items[position.X, position.Y];
 
+        /// <summary>
+        /// Returns the rows of the grid.
+        /// </summary>
         public IEnumerable<Row<T>> Rows => Enumerable.Range(0, Height).Select(y => new Row<T>(this, y));
     }
 
+    /// <summary>
+    /// Row class. Represents a row of a grid.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class Row<T>
     {
+        /// <summary>
+        /// Grid of which this object is a row.
+        /// </summary>
         private readonly Grid<T> _parent;
 
+        /// <summary>
+        /// Y-coordinate of the row.
+        /// </summary>
         private readonly int _rowIndex;
 
         public Row(Grid<T> parent, int rowIndex)
