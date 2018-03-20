@@ -1,0 +1,40 @@
+﻿<Window x:Class="ItemsControl2D.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ItemsControl2D"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <!-- ItemsControl's DataContext is a Grid. It asks for its rows. -->
+    <ItemsControl ItemsSource="{Binding Rows}">
+        <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+                <!-- Rows are arranged vertically -->
+                <StackPanel Orientation="Vertical" />
+            </ItemsPanelTemplate>
+        </ItemsControl.ItemsPanel>
+        <ItemsControl.ItemTemplate>
+            <DataTemplate>
+                <!-- Inner ItemsControl. Its DataContext is a single row, of which it requests the items. -->
+                <ItemsControl ItemsSource="{Binding Items}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <!-- Arrange row items horizontally. -->
+                            <StackPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <!-- Renders a single cell in the grid. Each cell is a 64x64 square. -->
+                            <Border Width="64" Height="64" BorderBrush="Black" BorderThickness="1" Margin="2">
+                                <!-- {Binding} means "Use the DataContext itself" -->
+                                <TextBlock Text="{Binding}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </DataTemplate>
+        </ItemsControl.ItemTemplate>
+    </ItemsControl>
+</Window>
