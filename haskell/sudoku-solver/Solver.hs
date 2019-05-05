@@ -3,7 +3,8 @@ module Main where
 import qualified Data.Map as Map
 import Data.List
 import Data.Maybe
-
+import Data.Function(on)
+    
 newtype Position = Position (Int, Int) deriving Eq
 
 instance Show Position where
@@ -23,7 +24,7 @@ solve :: [(Position, [Int])] -> [(Position, Int)]
 -------------------------------------------------
 solve = head . aux [] . sort
     where
-      sort = sortBy (\(_, x) (_, y) -> compare (length x) (length y))
+      sort = sortBy (compare `on` length)
 
       aux acc []              = return acc
       aux acc ((p, dom) : xs) = do v <- dom
