@@ -1,0 +1,44 @@
+﻿<Window x:Class="ListBox.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ListBox"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <!-- DataContext is set to a ClassroomViewModel object -->
+    <DockPanel>
+        <Button Command="{Binding HandleStudent}" DockPanel.Dock="Bottom" Padding="10" Margin="5">
+            Handle Student
+        </Button>
+        <!-- Fetch items from ClassroomViewModel.Students -->
+        <ListBox ItemsSource="{Binding Students}" SelectedItem="{Binding SelectedStudent}" HorizontalContentAlignment="Stretch">
+            <ListBox.ItemTemplate>
+                <!-- Specifies how each student should be visualized -->
+                <!-- DataContext is set to StudentViewModel so that the template knows which data to use -->
+                <DataTemplate>
+                    <Border Margin="5" Padding="5" BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Stretch">
+                        <Grid HorizontalAlignment="Stretch">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <TextBlock FontWeight="Bold" Margin="5" Text="Name" Grid.Row="0" Grid.Column="0" />
+                            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Name}" Margin="5" />
+                            <TextBlock FontWeight="Bold" Margin="5" Text="Id" Grid.Row="1" Grid.Column="0" />
+                            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Id}" Margin="5" />
+                            <CheckBox Grid.Row="2" Grid.Column="1" IsChecked="{Binding IsMale}" Margin="5">
+                                Male
+                            </CheckBox>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </DockPanel>
+</Window>
